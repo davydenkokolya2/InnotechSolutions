@@ -5,16 +5,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
-public class RegistrationController {
+public class LoginController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/registration")
-    public Boolean createUser(@RequestBody UserDTO userDTO) {
-
-        return userService.saveUser(userDTO);
+    @PostMapping("/login")
+    public UserDTO createUser(@RequestBody UserDTO userDTO) {
+        System.out.println(userService.findUserByEmail(userDTO));
+        return userService.findUserByEmail(userDTO);
     }
-
 }

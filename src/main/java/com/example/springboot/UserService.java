@@ -1,5 +1,8 @@
 package com.example.springboot;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserService {
 
     UserRepository userRepository = new UserRepository();
