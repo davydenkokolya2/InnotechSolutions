@@ -1,10 +1,12 @@
 package com.example.practice.repository;
 
 import com.example.practice.entity.UserDTO;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
+@Repository
 public class UserRepository {
     ArrayList<UserDTO> list = new ArrayList<>();
 

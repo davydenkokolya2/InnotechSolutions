@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    UserRepository userRepository = new UserRepository();
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public UserDTO findUserByEmail(UserDTO user) {
         return userRepository.findUserByEmail(user);
