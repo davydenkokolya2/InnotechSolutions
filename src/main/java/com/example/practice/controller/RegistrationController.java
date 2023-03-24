@@ -1,5 +1,7 @@
-package com.example.springboot;
+package com.example.practice.controller;
 
+import com.example.practice.entity.UserDTO;
+import com.example.practice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

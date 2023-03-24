@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.example.practice.entity;
 
 public class UserDTO {
     private String firstName;

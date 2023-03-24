@@ -1,4 +1,6 @@
-package com.example.springboot;
+package com.example.practice.repository;
+
+import com.example.practice.entity.UserDTO;
 
 import java.util.ArrayList;
 import java.util.Objects;
