@@ -22,6 +22,8 @@ public class GeolocationDTO {
 
     private Double latitude;
 
+    private int userId;
+
     public Double getLongitude() {
         return longitude;
     }
@@ -36,5 +38,13 @@ public class GeolocationDTO {
 
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
