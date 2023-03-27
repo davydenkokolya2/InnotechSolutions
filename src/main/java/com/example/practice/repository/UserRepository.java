@@ -1,24 +1,13 @@
 package com.example.practice.repository;
 
-import com.example.practice.entity.UserDTO;
+import com.example.practice.entity.UserDB;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
 
 @Repository
-public class UserRepository {
-    ArrayList<UserDTO> list = new ArrayList<>();
-
-    public void save(UserDTO user) {
-        list.add(user);
-    }
-
-    public UserDTO findUserByEmail(UserDTO user) {
-        for (UserDTO item : list)
-            if (Objects.equals(item.getEmail(), user.getEmail()))
-                return item;
-        return null;
-
-    }
+public interface UserRepository extends JpaRepository<UserDB, Long> {
+    List<UserDB> findByEmail(String email);
 }
+
