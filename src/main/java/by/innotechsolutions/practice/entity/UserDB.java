@@ -1,4 +1,4 @@
-package com.example.practice.entity;
+package by.innotechsolutions.practice.entity;
 
 import jakarta.persistence.*;
 

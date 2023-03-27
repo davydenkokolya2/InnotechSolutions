@@ -1,7 +1,7 @@
-package com.example.practice.controller;
+package by.innotechsolutions.practice.controller;
 
-import com.example.practice.entity.UserDTO;
-import com.example.practice.service.UserService;
+import by.innotechsolutions.practice.entity.UserDTO;
+import by.innotechsolutions.practice.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

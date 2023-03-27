@@ -1,10 +1,10 @@
-package com.example.practice.service;
+package by.innotechsolutions.practice.service;
 
-import com.example.practice.entity.ConverterUserDTOToUserDB;
-import com.example.practice.entity.UserDB;
-import com.example.practice.entity.UserDTO;
-import com.example.practice.repository.LocalUserRepository;
-import com.example.practice.repository.UserRepository;
+import by.innotechsolutions.practice.entity.UserDB;
+import by.innotechsolutions.practice.entity.UserDTO;
+import by.innotechsolutions.practice.entity.ConverterUserDTOToUserDB;
+import by.innotechsolutions.practice.repository.LocalUserRepository;
+import by.innotechsolutions.practice.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

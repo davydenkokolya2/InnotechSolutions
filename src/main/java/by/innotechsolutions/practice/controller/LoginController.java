@@ -1,8 +1,8 @@
-package com.example.practice.controller;
+package by.innotechsolutions.practice.controller;
 
-import com.example.practice.entity.UserDB;
-import com.example.practice.repository.UserRepository;
-import com.example.practice.service.UserService;
+import by.innotechsolutions.practice.entity.UserDB;
+import by.innotechsolutions.practice.repository.UserRepository;
+import by.innotechsolutions.practice.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

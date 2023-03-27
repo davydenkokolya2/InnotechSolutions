@@ -1,6 +1,6 @@
-package com.example.practice.repository;
+package by.innotechsolutions.practice.repository;
 
-import com.example.practice.entity.UserDB;
+import by.innotechsolutions.practice.entity.UserDB;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
