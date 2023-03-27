@@ -25,7 +25,7 @@ public class UserService {
     public Boolean saveUser(UserDTO user) {
         ConverterUserDTOToUserDB converterUserDTOToUserDB = new ConverterUserDTOToUserDB();
         UserDB userDB = converterUserDTOToUserDB.convert(user);
-        System.out.println(findUserByEmail(userDB));
+        //System.out.println(findUserByEmail(userDB));
         if (findUserByEmail(userDB).isEmpty()) {
                 userRepository.save(userDB);
             return true;
