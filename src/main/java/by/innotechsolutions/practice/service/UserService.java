@@ -1,8 +1,8 @@
 package by.innotechsolutions.practice.service;
 
-import by.innotechsolutions.practice.entity.UserDB;
-import by.innotechsolutions.practice.entity.UserDTO;
-import by.innotechsolutions.practice.entity.ConverterUserDTOToUserDB;
+import by.innotechsolutions.practice.entity.User;
+import by.innotechsolutions.practice.DTO.UserDTO;
+import by.innotechsolutions.practice.mapper.ConverterUserDTOToUserDB;
 import by.innotechsolutions.practice.repository.LocalUserRepository;
 import by.innotechsolutions.practice.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -18,13 +18,13 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<UserDB> findUserByEmail(UserDB user) {
+    public List<User> findUserByEmail(User user) {
         return userRepository.findByEmail(user.getEmail());
     }
 
     public Boolean saveUser(UserDTO user) {
         ConverterUserDTOToUserDB converterUserDTOToUserDB = new ConverterUserDTOToUserDB();
-        UserDB userDB = converterUserDTOToUserDB.convert(user);
+        User userDB = converterUserDTOToUserDB.toEntity(user);
         //System.out.println(findUserByEmail(userDB));
         if (findUserByEmail(userDB).isEmpty()) {
                 userRepository.save(userDB);

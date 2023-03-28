@@ -1,6 +1,6 @@
 package by.innotechsolutions.practice.repository;
 
-import by.innotechsolutions.practice.entity.UserDTO;
+import by.innotechsolutions.practice.DTO.UserDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

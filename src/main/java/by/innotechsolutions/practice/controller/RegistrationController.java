@@ -1,6 +1,6 @@
 package by.innotechsolutions.practice.controller;
 
-import by.innotechsolutions.practice.entity.UserDTO;
+import by.innotechsolutions.practice.DTO.UserDTO;
 import by.innotechsolutions.practice.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

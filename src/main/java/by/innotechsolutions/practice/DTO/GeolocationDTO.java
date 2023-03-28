@@ -1,13 +1,12 @@
-package by.innotechsolutions.practice.entity;
+package by.innotechsolutions.practice.DTO;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Id;
 
-@Entity
-@Table(name = "geolocation")
+import java.time.LocalTime;
+
 public class GeolocationDTO {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public void setId(Long id) {
@@ -23,6 +22,11 @@ public class GeolocationDTO {
     private Double latitude;
 
     private int userId;
+
+    private boolean sos;
+
+    //@JsonFormat(pattern="HH:mm:ss")
+    private LocalTime time;
 
     public Double getLongitude() {
         return longitude;
@@ -46,5 +50,21 @@ public class GeolocationDTO {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public boolean getSos() {
+        return sos;
+    }
+
+    public void setSos(boolean sos) {
+        this.sos = sos;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 }

@@ -1,27 +1,14 @@
-package by.innotechsolutions.practice.entity;
+package by.innotechsolutions.practice.DTO;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "users")
-public class UserDB {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class UserDTO {
     private String firstName;
+
     private String lastName;
-    private String email;
 
     private String password;
 
-    public Long getId() {
-        return id;
-    }
+    private String email;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -39,14 +26,6 @@ public class UserDB {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -54,6 +33,12 @@ public class UserDB {
     public void setPassword(String password) {
         this.password = password;
     }
-    // getters and setters
-}
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+}

@@ -1,6 +1,6 @@
 package by.innotechsolutions.practice.controller;
 
-import by.innotechsolutions.practice.entity.UserDB;
+import by.innotechsolutions.practice.entity.User;
 import by.innotechsolutions.practice.repository.UserRepository;
 import by.innotechsolutions.practice.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +22,12 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public List<UserDB> createUser(@RequestBody UserDB user) {
+    public List<User> createUser(@RequestBody User user) {
         return userService.findUserByEmail(user);
     }
 
     @GetMapping("/login")
-    public List<UserDB> getUsers() {
+    public List<User> getUsers() {
         return userRepository.findAll();
     }
 }
