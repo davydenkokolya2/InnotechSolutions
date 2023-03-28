@@ -1,4 +1,4 @@
-package com.example.springboot;
+package by.innotechsolutions.practice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
