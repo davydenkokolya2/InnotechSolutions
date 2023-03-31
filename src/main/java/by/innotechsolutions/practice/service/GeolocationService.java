@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static by.innotechsolutions.practice.utils.Constants.*;
+
 @RequiredArgsConstructor
 @Service
 public class GeolocationService {
@@ -31,19 +33,17 @@ public class GeolocationService {
 
     public double getDistanceBetweenCoordinates(final GeolocationDTO firstGeo,
                                                 final GeolocationDTO secondGeo) {
-        int radius = 6371000;
         double dLat = deg2rad(firstGeo.getLatitude() - secondGeo.getLatitude());
         double dLon = deg2rad(firstGeo.getLongitude() - secondGeo.getLongitude());
-        double d = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        double d = Math.sin(dLat / TWO) * Math.sin(dLat / TWO) +
                 Math.cos(deg2rad(firstGeo.getLatitude())) * Math.cos(deg2rad(secondGeo.getLatitude())) *
-                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                        Math.sin(dLon / TWO) * Math.sin(dLon / TWO);
         //System.out.println(d);
-        double c = 2 * Math.atan2(Math.sqrt(d), Math.sqrt(1 - d));
-        return radius * c;
+        return EARTH_RADIUS * TWO * Math.atan2(Math.sqrt(d), Math.sqrt(ONE - d));
     }
 
     private double deg2rad(double deg) {
-        return deg * (Math.PI / 180);
+        return deg * (Math.PI / HALF_CIRCLE);
     }
 
     ArrayList<ArrayList<GeolocationDTO>> listOfUsers = new ArrayList<>();
@@ -54,8 +54,8 @@ public class GeolocationService {
         if (geolocationDTO.isSos()) {
             for (int i = 0; i < listOfUsers.size(); i++) {
                 for (int j = 0; j < listOfUsers.get(i).size(); j++)
-                    if (Math.abs(geolocationDTO.getTime().getSecond() - listOfUsers.get(i).get(j).getTime().getSecond()) <= 10
-                            && getDistanceBetweenCoordinates(geolocationDTO, listOfUsers.get(i).get(j)) <= 10
+                    if (Math.abs(geolocationDTO.getTime().getSecond() - listOfUsers.get(i).get(j).getTime().getSecond()) <= CRITICAL_TIME
+                            && getDistanceBetweenCoordinates(geolocationDTO, listOfUsers.get(i).get(j)) <= CRITICAL_RADIUS
                             && !Objects.equals(listOfUsers.get(i).get(j).getUserId(), geolocationDTO.getUserId())) {
                         flag = true;
                     } else if (Objects.equals(listOfUsers.get(i).get(j).getUserId(), geolocationDTO.getUserId()))
@@ -64,7 +64,7 @@ public class GeolocationService {
                     listOfUsers.get(i).add(geolocationDTO);
                     flag2 = true;
                 }
-                if (listOfUsers.get(i).size() == 3) {
+                if (listOfUsers.get(i).size() == CRITICAL_NUMBER_CARS) {
                     sendSOSNotification(listOfUsers.get(i));
                 }
             }
@@ -90,7 +90,7 @@ public class GeolocationService {
         for (Geolocation item : result)
             if (getDistanceBetweenCoordinates(
                     converterGeolocationDTOToGeolocation.toEntity(item),
-                    listGeolocations.get(0)) <= 2000 && !item.isSos())
+                    listGeolocations.get(0)) <= NOTIFICATION_RADIUS && !item.isSos())
                 listNotificationUsers.add(converterGeolocationDTOToGeolocation.toEntity(item));
 
         for (GeolocationDTO item : listNotificationUsers)
