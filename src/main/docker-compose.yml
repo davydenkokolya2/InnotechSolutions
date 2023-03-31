@@ -7,10 +7,11 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: example
-      PGDATA: "/var/lib/postgresql/data/pgdata"
     volumes:
-      - ../2. Init Database:/docker-entrypoint-initdb.d
-      - .:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
     ports:
-      - 5433:5432
+      - "5433:5432"
+volumes:
+  db:
+    driver: local
 
