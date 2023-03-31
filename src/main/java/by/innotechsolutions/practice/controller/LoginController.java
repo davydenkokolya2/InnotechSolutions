@@ -3,6 +3,7 @@ package by.innotechsolutions.practice.controller;
 import by.innotechsolutions.practice.entity.User;
 import by.innotechsolutions.practice.repository.UserRepository;
 import by.innotechsolutions.practice.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,16 +11,12 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+@AllArgsConstructor
 @RestController
 public class LoginController {
 
     UserService userService;
     UserRepository userRepository;
-
-    public LoginController(UserRepository userRepository, UserService userService) {
-        this.userRepository = userRepository;
-        this.userService = userService;
-    }
 
     @RequestMapping(value = "/login", method = POST)
     @ResponseBody

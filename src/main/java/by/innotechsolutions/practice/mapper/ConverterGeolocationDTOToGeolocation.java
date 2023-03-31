@@ -8,7 +8,7 @@ public class ConverterGeolocationDTOToGeolocation {
         Geolocation geolocation = new Geolocation();
         geolocation.setLongitude(dto.getLongitude());
         geolocation.setLatitude(dto.getLatitude());
-        geolocation.setSos(dto.getSos());
+        geolocation.setSos(dto.isSos());
         geolocation.setTime(dto.getTime());
         geolocation.setUserId(dto.getUserId());
         return geolocation;

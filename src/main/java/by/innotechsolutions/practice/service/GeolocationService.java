@@ -4,10 +4,12 @@ import by.innotechsolutions.practice.DTO.GeolocationDTO;
 import by.innotechsolutions.practice.entity.Geolocation;
 import by.innotechsolutions.practice.mapper.ConverterGeolocationDTOToGeolocation;
 import by.innotechsolutions.practice.repository.GeolocationRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class GeolocationService {
     private final GeolocationRepository geolocationRepository;
@@ -16,10 +18,6 @@ public class GeolocationService {
 
     GeolocationDTO geolocation = new GeolocationDTO();
     int counter = 0;
-
-    private GeolocationService(GeolocationRepository geolocationRepository) {
-        this.geolocationRepository = geolocationRepository;
-    }
 
     public boolean saveGeolocation(final GeolocationDTO geolocationDTO) {
         try {
@@ -51,7 +49,7 @@ public class GeolocationService {
 
     public boolean checkSOS(GeolocationDTO geolocationDTO) {
 
-        if (geolocationDTO.getSos()) {
+        if (geolocationDTO.isSos()) {
             if (counter > 0 && counter < 3)
                 if (Math.abs(geolocationDTO.getTime().getSecond() - geolocation.getTime().getSecond()) <= 10 && getDistanceBetweenCoordinates(geolocationDTO, geolocation) <= 10)
                     counter++;
