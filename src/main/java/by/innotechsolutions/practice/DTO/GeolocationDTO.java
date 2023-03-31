@@ -4,6 +4,7 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Getter
@@ -17,4 +18,5 @@ public class GeolocationDTO {
     private int userId;
     private boolean sos;
     private LocalTime time;
+    private LocalDate date;
 }

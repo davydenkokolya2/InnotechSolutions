@@ -11,6 +11,7 @@ public class ConverterGeolocationDTOToGeolocation {
         geolocation.setSos(dto.isSos());
         geolocation.setTime(dto.getTime());
         geolocation.setUserId(dto.getUserId());
+        geolocation.setDate(dto.getDate());
         return geolocation;
     }
     public GeolocationDTO toEntity(Geolocation dto) {
@@ -20,6 +21,7 @@ public class ConverterGeolocationDTOToGeolocation {
         geolocation.setSos(dto.isSos());
         geolocation.setTime(dto.getTime());
         geolocation.setUserId(dto.getUserId());
+        geolocation.setDate(dto.getDate());
         return geolocation;
     }
 }
