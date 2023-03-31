@@ -19,16 +19,13 @@ public class GeolocationService {
 
     private final ConverterGeolocationDTOToGeolocation converterGeolocationDTOToGeolocation = new ConverterGeolocationDTOToGeolocation();
 
-    GeolocationDTO geolocation = new GeolocationDTO();
 
-    public boolean saveGeolocation(final GeolocationDTO geolocationDTO) {
+    public void saveGeolocation(final GeolocationDTO geolocationDTO) {
         try {
             //System.out.println(geolocationDTO.getLatitude());
             geolocationRepository.save(converterGeolocationDTOToGeolocation.toEntity(geolocationDTO));
-            return true;
         } catch (Exception ex) {
             //System.out.println(ex.toString());
-            return false;
         }
     }
 
@@ -82,14 +79,22 @@ public class GeolocationService {
             System.out.println();
         }
 
-        geolocation.setLatitude(geolocationDTO.getLatitude());
-        geolocation.setLongitude(geolocationDTO.getLongitude());
-        geolocation.setTime(geolocationDTO.getTime());
         return false;
     }
 
     private void sendSOSNotification(ArrayList<GeolocationDTO> listGeolocations) {
-        geolocationRepository.findByTime();
+        ArrayList<GeolocationDTO> listNotificationUsers = new ArrayList<>();
+        List<Geolocation> result = geolocationRepository.findByTimeBetween(
+                listGeolocations.get(0).getTime().minusMinutes(2),
+                listGeolocations.get(0).getTime());
+        for (Geolocation item : result)
+            if (getDistanceBetweenCoordinates(
+                    converterGeolocationDTOToGeolocation.toEntity(item),
+                    listGeolocations.get(0)) <= 2000 && !item.isSos())
+                listNotificationUsers.add(converterGeolocationDTOToGeolocation.toEntity(item));
+
+        for (GeolocationDTO item : listNotificationUsers)
+            System.out.println(item.getUserId());
     }
 
     public List<Geolocation> getGeolocation() {
