@@ -9,4 +9,5 @@ public class Constants {
     public static final int CRITICAL_TIME = 10;
     public static final int CRITICAL_RADIUS = 10;
     public static final int NOTIFICATION_RADIUS = 2000;
+    public static final int TIME_BEFORE_ACCIDENT_FOR_NOTIFICATION = 2;
 }

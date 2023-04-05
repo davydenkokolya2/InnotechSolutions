@@ -15,7 +15,7 @@ public class RegistrationController {
 
     @RequestMapping(value = "/registration", method = POST)
     @ResponseBody
-    public Boolean createUser(@RequestBody UserDTO userDTO) {
+    public String createUser(@RequestBody UserDTO userDTO) {
 
         return userService.saveUser(userDTO);
     }

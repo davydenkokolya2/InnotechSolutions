@@ -15,7 +15,7 @@ public class GeolocationDTO {
     private Long id;
     private Double longitude;
     private Double latitude;
-    private int userId;
+    private Integer userId;
     private boolean sos;
     private LocalTime time;
     private LocalDate date;

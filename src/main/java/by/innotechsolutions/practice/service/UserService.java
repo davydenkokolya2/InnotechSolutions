@@ -20,13 +20,14 @@ public class UserService {
         return userRepository.findByEmail(user.getEmail());
     }
 
-    public Boolean saveUser(UserDTO user) {
+    public String saveUser(UserDTO user) {
         ConverterUserDTOToUserDB converterUserDTOToUserDB = new ConverterUserDTOToUserDB();
         User userDB = converterUserDTOToUserDB.toEntity(user);
         //System.out.println(findUserByEmail(userDB));
         if (findUserByEmail(userDB).isEmpty()) {
-                userRepository.save(userDB);
-            return true;
-        } else return false;
+            userRepository.save(userDB);
+            return findUserByEmail(userDB).get(0).getId().toString();
+        } else return findUserByEmail(userDB).get(0).getId().toString();
+
     }
 }
