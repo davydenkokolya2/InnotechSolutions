@@ -4,7 +4,10 @@ import by.innotechsolutions.practice.entity.User;
 import by.innotechsolutions.practice.repository.UserRepository;
 import by.innotechsolutions.practice.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -20,7 +23,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = POST)
     @ResponseBody
-    public List<User> createUser(@RequestBody User user) {
+    public User createUser(@RequestBody User user) {
         return userService.findUserByEmail(user);
     }
 

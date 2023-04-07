@@ -7,8 +7,6 @@ import by.innotechsolutions.practice.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @AllArgsConstructor
 @Service
 public class UserService {
@@ -16,7 +14,7 @@ public class UserService {
     private final UserRepository userRepository;
 
 
-    public List<User> findUserByEmail(User user) {
+    public User findUserByEmail(User user) {
         return userRepository.findByEmail(user.getEmail());
     }
 
@@ -24,10 +22,10 @@ public class UserService {
         ConverterUserDTOToUserDB converterUserDTOToUserDB = new ConverterUserDTOToUserDB();
         User userDB = converterUserDTOToUserDB.toEntity(user);
         //System.out.println(findUserByEmail(userDB));
-        if (findUserByEmail(userDB).isEmpty()) {
+        if (findUserByEmail(userDB) != null) {
             userRepository.save(userDB);
-            return findUserByEmail(userDB).get(0).getId().toString();
-        } else return findUserByEmail(userDB).get(0).getId().toString();
+            return findUserByEmail(userDB).getId().toString();
+        } else return findUserByEmail(userDB).getId().toString();
 
     }
 }
