@@ -6,21 +6,23 @@ import by.innotechsolutions.practice.controller.SseRestController;
 import by.innotechsolutions.practice.entity.Geolocation;
 import by.innotechsolutions.practice.mapper.ConverterGeolocationDTOToGeolocation;
 import by.innotechsolutions.practice.repository.GeolocationRepository;
-import lombok.RequiredArgsConstructor;
-
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 
 import static by.innotechsolutions.practice.utils.Constants.*;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Service
 public class GeolocationService {
     private final GeolocationRepository geolocationRepository;
     private final SseRestController sseRestController;
 
-    private final ConverterGeolocationDTOToGeolocation converterGeolocationDTOToGeolocation = new ConverterGeolocationDTOToGeolocation();
+    private final ConverterGeolocationDTOToGeolocation converterGeolocationDTOToGeolocation;
 
 
     public void saveGeolocation(final GeolocationDTO geolocationDTO) {
@@ -83,11 +85,11 @@ public class GeolocationService {
             sseRestController.sendMessageByName(geolocationDTO.getUserId().toString(), sendMessageRequestDTO);
         }
 
-        for (ArrayList<GeolocationDTO> listOfUser : listOfUsers) {
+        /*for (ArrayList<GeolocationDTO> listOfUser : listOfUsers) {
             for (GeolocationDTO dto : listOfUser)
                 System.out.print(dto.getUserId() + " ");
             System.out.println();
-        }
+        }*/
 
         return false;
     }

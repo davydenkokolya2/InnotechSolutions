@@ -2,11 +2,11 @@ package by.innotechsolutions.practice.controller;
 
 import by.innotechsolutions.practice.DTO.AuthenticationResponse;
 import by.innotechsolutions.practice.DTO.UserDTO;
+import by.innotechsolutions.practice.JwtUserDetails;
 import by.innotechsolutions.practice.service.JwtTokenService;
 import by.innotechsolutions.practice.service.JwtUserDetailsService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 public class AuthenticationController {
-    JwtTokenService jwtTokenService;
-    JwtUserDetailsService jwtUserDetailsService;
-    AuthenticationManager authenticationManager;
+    private final JwtTokenService jwtTokenService;
+    private final JwtUserDetailsService jwtUserDetailsService;
+    private final AuthenticationManager authenticationManager;
 
     @RequestMapping(value = "/authenticate", method = POST)
     @ResponseBody
@@ -33,11 +33,13 @@ public class AuthenticationController {
             System.out.println("123");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }*/
-        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(request.getEmail());
-        System.out.println(userDetails);
+        System.out.println("AuthenticationController " + request);
+        final JwtUserDetails userDetails = jwtUserDetailsService.loadUserByUsername(request);
         final AuthenticationResponse authenticationResponse = new AuthenticationResponse();
         authenticationResponse.setAccessToken(jwtTokenService.generateToken(userDetails));
-        System.out.println(authenticationResponse);
+        authenticationResponse.setUserId(userDetails.id);
+        authenticationResponse.setFirstName(userDetails.firstName);
+        authenticationResponse.setLastName(userDetails.lastName);
         return authenticationResponse;
     }
 }

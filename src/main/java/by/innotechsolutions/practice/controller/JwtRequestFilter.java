@@ -23,12 +23,14 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     JwtTokenService jwtTokenService;
     JwtUserDetailsService jwtUserDetailsService;
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException {
 
+    @Override
+    protected void doFilterInternal(final HttpServletRequest request,
+                                    final HttpServletResponse response,
+                                    final FilterChain filterChain) throws ServletException, IOException {
+
+        System.out.println("JwtRequestFilter without bearer");
         final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-        System.out.println(header);
         if (header == null || !header.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
@@ -36,7 +38,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         final String token = header.substring(7);
         final String username = jwtTokenService.validateTokenAndGetUsername(token);
-        System.out.println(username);
+        System.out.println("JwtRequestFilter " + username);
         if (username == null) {
             // validation failed or token expired
             filterChain.doFilter(request, response);
@@ -45,7 +47,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         // set user details on spring security context
         final JwtUserDetails userDetails = (JwtUserDetails) jwtUserDetailsService.loadUserByUsername(username);
-        System.out.println(userDetails);
+        //System.out.println(userDetails.firstName);
         final UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                 userDetails, null, userDetails.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

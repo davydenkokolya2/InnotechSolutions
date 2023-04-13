@@ -17,17 +17,16 @@ import java.time.Instant;
 @Service
 public class JwtTokenService {
 
-    private static final Duration JWT_TOKEN_VALIDITY = Duration.ofMinutes(10);
+    private static final Duration JWT_TOKEN_VALIDITY = Duration.ofHours(3);
 
     private final Algorithm hmac512;
     private final JWTVerifier verifier;
 
-    public JwtTokenService(@Value("${jwt.secret}")  final String secret) {
-        System.out.println(secret);
+
+
+    public JwtTokenService(@Value("${jwt.secret}") final String secret) {
         this.hmac512 = Algorithm.HMAC512(secret);
-        System.out.println(this.hmac512);
         this.verifier = JWT.require(this.hmac512).build();
-        System.out.println(this.verifier);
     }
 
     public String generateToken(final UserDetails userDetails) {
@@ -42,8 +41,6 @@ public class JwtTokenService {
 
     public String validateTokenAndGetUsername(final String token) {
         try {
-            System.out.println(token);
-            System.out.println(verifier.verify(token).getSubject());
             return verifier.verify(token).getSubject();
         } catch (final JWTVerificationException ex) {
             return null;

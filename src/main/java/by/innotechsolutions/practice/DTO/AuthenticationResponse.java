@@ -7,4 +7,7 @@ import lombok.Setter;
 @Setter
 public class AuthenticationResponse {
     private String accessToken;
+    private String firstName;
+    private String lastName;
+    private Long userId;
 }

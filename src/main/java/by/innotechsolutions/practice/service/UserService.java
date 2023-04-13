@@ -22,10 +22,14 @@ public class UserService {
         ConverterUserDTOToUserDB converterUserDTOToUserDB = new ConverterUserDTOToUserDB();
         User userDB = converterUserDTOToUserDB.toEntity(user);
         //System.out.println(findUserByEmail(userDB));
-        if (findUserByEmail(userDB) != null) {
+        try {
+            findUserByEmail(userDB);
+            //userRepository.save(userDB);
+            return findUserByEmail(userDB).getId().toString();
+        } catch (Exception ex){
             userRepository.save(userDB);
             return findUserByEmail(userDB).getId().toString();
-        } else return findUserByEmail(userDB).getId().toString();
+        }
 
     }
 }
